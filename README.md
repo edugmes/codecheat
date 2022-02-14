@@ -7,3 +7,11 @@
 Add to your `settings.json`:
 
 `"editor.bracketPairColorization.enabled": true`
+
+# Git
+## Update local repo
+Being in the branch to be updated `git pull <remote_ref> <branch_name>`
+## Show list of files in conflict during merge
+`git diff --name-only --diff-filter=U`
+## Edit last commit message
+`git commit --amend`
