@@ -26,6 +26,12 @@ Being in the branch to be updated `git pull <remote_ref> <branch_name>`
 `git diff --name-only --diff-filter=U`
 ## Edit last commit message
 `git commit --amend`
+## Add all except
+`git add <what_to_add> :!<what_to_ignore>`
+
+Example:
+
+`git add . :\!psql` will add everything in the current path except `psql` (`psql` here can be either a file or folder)
 
 # Bash beautiful
 ## Add to your `.bashrc`
