@@ -46,3 +46,7 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[0
 - PROMPT_DIRTRIM=<path_deepness>
 
 - [Tutorial on how to change shell prompt color](https://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/)
+
+# WSL
+## Start and stop service
+Open windows bash in admin mode: `net stop LxssManager` and `net start LxssManager`
