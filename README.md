@@ -1,6 +1,6 @@
 # Django
 ## How to create superuser
-[ `python manage.py createsuperuser` ] and go to [admin panel](http://127.0.0.1:8000/admin/) to test it. 
+`python manage.py createsuperuser` and go to [admin panel](http://127.0.0.1:8000/admin/) to test it. 
 
 # VS Code
 ## [Enable colorized brackets](https://dev.to/nickytonline/native-bracket-pair-colourization-in-vs-code-3f1n)
@@ -9,6 +9,16 @@ Add to your `settings.json`:
 `"editor.bracketPairColorization.enabled": true`
 
 # Git
+## A better log
+Full command:
+
+`git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit`
+
+But you can add an alias:
+
+`git config --global alias.plog "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"`
+
+And you can simply do a `git plog` or, to see the lines that changed, `git plog -p`.
 ## Update local repo
 Being in the branch to be updated `git pull <remote_ref> <branch_name>`
 ## Show list of files in conflict during merge
