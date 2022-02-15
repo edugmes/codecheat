@@ -28,6 +28,10 @@ Being in the branch to be updated `git pull <remote_ref> <branch_name>`
 `git commit --amend`
 ## Add all except
 `git add <what_to_add> :!<what_to_ignore>`
+## Reset to commit without losing changes
+`git reset --soft <commit_hash|HEAD^N>`
+## Remove from stage without losing changes
+`git reset HEAD` or `git reset HEAD -- <file|directory>`
 
 Example:
 
