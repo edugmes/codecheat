@@ -1,6 +1,30 @@
 # Django
+
 ## How to create superuser
 `python manage.py createsuperuser` and go to [admin panel](http://127.0.0.1:8000/admin/) to test it. 
+
+## Workaround for async deadlock with multiple local daphne resquests
+```
+from asgiref.sync import sync_to_async
+import asgiref, os, logging
+
+if os.getenv('DEBUG') == 'True':
+    logging.getLogger(__name__).info("APPLYING PATCH TO ASGIREF")
+    # patch idea: https://github.com/django/channels/issues/1722#issuecomment-1032965993    
+    def patch_sync_to_async(*args, **kwargs):
+        """
+        Monkey Patch the sync_to_async decorator
+        ---------------------------------------
+        ASGIRef made a change in their defaults that has caused major problems
+        for channels. The decorator below needs to be updated to use
+        thread_sensitive=False, thats why we are patching it on our side for now.
+        https://github.com/django/channels/blob/main/channels/http.py#L220
+        """
+        kwargs['thread_sensitive'] = False
+        return sync_to_async(*args, **kwargs)
+
+    asgiref.sync.sync_to_async = patch_sync_to_async
+```
 
 # VS Code
 ## [Enable colorized brackets](https://dev.to/nickytonline/native-bracket-pair-colourization-in-vs-code-3f1n)
