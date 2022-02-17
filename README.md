@@ -3,6 +3,48 @@
 ## How to create superuser
 `python manage.py createsuperuser` and go to [admin panel](http://127.0.0.1:8000/admin/) to test it. 
 
+## Migrations
+
+1 - `python manage.py makemigrations` to create migration files. Prerequisite:
+
+- have app listed in INSTALLED_APPS
+
+- have a new attribute assigned in a model (trust me you may forget to assign variables and that'll drive you crazy)
+
+2 - `python manage.py migrate` to apply the migrations
+
+3 - If you want to revert to a migration: `python manage.py migrate <app_name> <migration_number_to_restore>`. Example: `python manage.py migrate my_app 0011`. Obs: no need to specify the whole migration name, just the numbers.
+
+## Show all migrations
+`python manage.py showmigrations <optional_app_name>`
+
+## Get user model and a users
+`python manage.py shell`
+```
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+usr = User.objects.filter(is_active=True)[0]
+```
+
+## Get all permissions
+`python manage.py shell`
+```
+from django.contrib.auth.models import Permission
+from django.contrib.auth import get_user_model
+
+perms = set()
+
+for bk in auth.get_backends():
+    if hasattr(bk, "get_all_permissions"):
+        perms.update(bk.get_all_permissions(get_user_model()(is_active=True, is_superuser=True)))
+
+sorted(list(perms))
+```
+[ref](https://timonweb.com/django/how-to-get-a-list-of-all-user-permissions-available-in-django-based-project/)
+
+
 ## Workaround for async deadlock with multiple local daphne resquests
 ```
 from asgiref.sync import sync_to_async
