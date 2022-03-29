@@ -86,6 +86,14 @@ git config --global alias.plog "log --color --graph --pretty=format:'%Cred%h%Cre
 ```
 
 And you can simply do a `git plog` or, to see the lines that changed, `git plog -p`.
+
+## Checkout to remote branch locally
+
+`git checkout -b <new_name> upstream/<remote_branch_name>`
+
+## Show list of files changed at commit
+`it show --pretty"" --name-only HEAD^1`
+
 ## Update local repo
 Being in the branch to be updated `git pull <remote_ref> <branch_name>`
 ## Show list of files in conflict during merge
