@@ -45,6 +45,36 @@ sorted(list(perms))
 [ref](https://timonweb.com/django/how-to-get-a-list-of-all-user-permissions-available-in-django-based-project/)
 
 
+## URL pattern with fixed options
+On the `urls.py`:
+```
+from django.conf.urls import url
+
+urlpatterns = [
+    url(r"^my-url/url-path/(?P<option>option1|option2)$", views.ViewClass.as_view(), name="my_url_name")
+]
+```
+
+On the `views.py`:
+```
+class ViewClass(ListView):
+
+def get_context_data(self, *args, **kwargs):
+    context = super().get_context_data(*args, **kwargs)
+    context['option'] = self.kwargs['option']
+
+    return context
+```
+If you need any reverse url on the `get_context_data` of the view above:
+```
+reverse("app_name:my_url_name", kwargs={'option':self.kwargs['option']})
+```
+
+And if you need the url on the template tag:
+```
+<a href="{% url 'app_name:my_url_name' option=option %}">
+```
+
 ## Workaround for async deadlock with multiple local daphne resquests
 ```
 from asgiref.sync import sync_to_async
