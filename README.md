@@ -45,6 +45,12 @@ sorted(list(perms))
 [ref](https://timonweb.com/django/how-to-get-a-list-of-all-user-permissions-available-in-django-based-project/)
 
 
+## Template Conditional 'extends'
+
+```
+{% extends request.is_user_auth|yesno:"app/base_auth.html,app/base.html" %}
+```
+
 ## URL pattern with fixed options
 On the `urls.py`:
 ```
